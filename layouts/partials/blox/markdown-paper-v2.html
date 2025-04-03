@@ -1,0 +1,100 @@
+{{/* Hugo Blox: Article Metadata with Optional Image */}}
+
+{{/* Initialise */}}
+{{ $page := .wcPage }}
+{{ $block := .wcBlock }}
+{{ $title := $block.content.title | emojify | $page.RenderString }}
+{{ $image := $block.content.image }}
+{{ $authors := $block.content.authors }}
+{{ $journal := $block.content.journal }}
+{{ $pdfLink := $block.content.pdfLink }}
+{{ $codeLink := $block.content.codeLink }}
+{{ $bibtexLink := $block.content.bibtexLink }}
+{{ $titleLink := $block.content.titleLink }} 
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    /* Styles for the image */
+    .example-image {
+      height: 6rem; /* Adjust the height */
+      width: 10rem; /* Adjust the width */
+      object-fit: cover;
+      border-radius: 0.6rem;
+      flex-shrink: 0;
+    }
+
+    /* Hide the image on mobile screens (max-width: 600px) */
+    @media screen and (max-width: 600px) {
+      .example-image {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="w-full py-8 px-6 flex justify-center"> <!-- Centers content horizontally -->
+  <div class="w-full max-w-6xl flex items-center gap-6"> <!-- Content container -->
+    
+    {{/* Optional Image */}}
+    {{ if $image }}
+      <img src="{{ $image }}" alt="Image" class="example-image"> <!-- Apply the image class -->
+    {{ end }}
+
+    <div class="text-left flex-1">
+      {{/* Title with Link */}}
+      <div class="mb-2" style="font-size: 18px; color: #333; line-height: 1;">
+        {{ if $titleLink }}
+          <a href="{{ $titleLink }}" target="_blank" class="underline" style="font-size: 18px; color: #333; line-height: 1;">
+            {{ $title }}
+          </a>
+        {{ else }}
+          {{ $title }}
+        {{ end }}
+      </div>
+
+      {{/* Authors */}}
+      <div class="mb-2" style="font-size: 16px; color: #444; line-height: 1;">
+        {{ with $authors }}
+          {{ . }}
+        {{ end }}
+      </div>
+
+      {{/* Journal Information */}}
+      <div class="mb-2" style="font-size: 14px; color: #555; line-height: 1;"> <!-- Reduced margin here -->
+        {{ with $journal }}
+          <em>{{ . }}</em>
+        {{ end }}
+      </div>
+
+      {{/* Action Links (PDF, Code, BibTeX) */}}
+      <div class="flex flex-wrap space-x-3 mt-2"> <!-- Reduced top margin here -->
+        {{ if $pdfLink }}
+          <a href="{{ $pdfLink }}" target="_blank" 
+             style="display: inline-block; padding: 4px 8px; background-color: rgba(255, 87, 51, 0.2); color: rgb(107, 39, 23); text-decoration: none; border-radius: 4px; font-size: 12px;">
+            PDF
+          </a>
+        {{ end }}
+        {{ if $codeLink }}
+          <a href="{{ $codeLink }}" target="_blank" 
+             style="display: inline-block; padding: 4px 8px; background-color: rgba(51, 153, 255, 0.2); color: rgb(16, 48, 80); text-decoration: none; border-radius: 4px; font-size: 12px;">
+            Code
+          </a>
+        {{ end }}
+        {{ if $bibtexLink }}
+          <a href="{{ $bibtexLink }}" target="_blank" 
+             style="display: inline-block; padding: 4px 8px; background-color: rgba(51, 204, 51, 0.2); color: rgb(25, 99, 25); text-decoration: none; border-radius: 4px; font-size: 12px;">
+            BibTeX
+          </a>
+        {{ end }}
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>

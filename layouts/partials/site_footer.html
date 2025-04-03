@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+footer {
+  text-align: center;
+  padding: 10px;
+  word-wrap: break-word;
+}
+
+/* Zeilenumbrüche bei kleinen Bildschirmen und Entfernen der Pipes */
+@media screen and (max-width: 600px) {
+  .mobile-break {
+    display: block;
+    margin-top: 5px;
+  }
+  .pipe {
+    display: none;
+  }
+}
+</style>
+</head>
+<body>
+
+<footer>
+    <small>
+        &copy; <span id="current-year"></span> Mirko Sommer. All rights reserved. 
+        <span class="mobile-break"></span><span class="pipe"> | </span><a href="/legal-notice">Legal Notice / Impressum</a>
+        <span class="mobile-break"></span><span class="pipe"> | </span><a href="/privacy-policy">Privacy Policy / Datenschutz</a>
+    </small>
+</footer>
+
+<script>
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
