@@ -27,8 +27,8 @@ organizations:
 profiles:
   - icon: brands/github
     url: https://github.com/mirko-sommer
-  #- icon: brands/linkedin
-  #  url: https://www.linkedin.com/
+  - icon: brands/linkedin
+    url: https://www.linkedin.com/in/mirko-sommer
   #- icon: academicons/google-scholar
   #  url: https://scholar.google.com/
   #- icon: academicons/orcid
